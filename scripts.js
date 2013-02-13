@@ -17,6 +17,7 @@ function init() {
     $.post("load.py", { classname : "class" },
 	   function( data, status ) {
 	       console.log( data );
+	       console.log( data[0] );
 	       names = eval("(" + data + ")");
 	   });
     
