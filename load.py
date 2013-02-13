@@ -17,4 +17,4 @@ def loadClass( sl ):
 
 
 form = cgi.FieldStorage()
-return loadClass( "classlist.txt" )
+print loadClass( "classlist.txt" )
