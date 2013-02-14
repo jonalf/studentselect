@@ -1,4 +1,5 @@
 var names;
+var classes;
 
 function init() {
     var c = document.getElementById("namebox");
@@ -14,14 +15,25 @@ function init() {
 
     canvas.fillText( "Click Here", 250, 250);
 
-    $.post("load.py", { classname : "class" },
+    $.post("load.py", { type : "classes" },
 	   function( data, status ) {
-	       console.log( data );
-	       console.log( data[0] );
-	       names = eval("(" + data + ")");
+	       console.log("data: " + data );
+	       classes = eval(data);
+	       console.log("classes: " + classes );
 	   });
+    console.log( classes );
+
+    var options = "";
     
-    console.log( names );
+    for (c in classes)
+	options+= "<option value=\"" + c + "\">" + c + "</option>"
+    //    console.log( options );
+    $("#cname").html( options );
+
+    $.post("load.py", { type : "students" },
+	   function( data, status ) {
+	       names = eval(data);
+	   });
 }
 
 function loadBox() {
@@ -33,5 +45,5 @@ function loadBox() {
     canvas.fillRect(0, 0, c.width, c.width);
 
     canvas.fillStyle="white";
-    canvas.fillText( names[Math.floor(Math.random() * 2)], 250, 250);
+    canvas.fillText( names[Math.floor(Math.random() * names.length)], 250, 250);
 }
