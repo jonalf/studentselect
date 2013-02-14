@@ -17,18 +17,16 @@ function init() {
 
     $.post("load.py", { type : "classes" },
 	   function( data, status ) {
-	       console.log("data: " + data );
 	       classes = eval(data);
 	       console.log("classes: " + classes );
-	   });
-    console.log( classes );
-
-    var options = "";
+	       var options = "";
     
-    for (c in classes)
-	options+= "<option value=\"" + c + "\">" + c + "</option>"
-    //    console.log( options );
-    $("#cname").html( options );
+	       for (c in classes) {
+		   console.log("c: " + c);
+		   options+= "<option value=\"" + classes[c] + "\">" + classes[c] + "</option>"
+	       }
+	       $("#cname").html( options );
+	   });
 
     $.post("load.py", { type : "students" },
 	   function( data, status ) {

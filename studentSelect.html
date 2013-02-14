@@ -8,11 +8,17 @@
 	href="style.css" />
 </head>
 
-<body onload="init()">
+<body>
 <canvas id="namebox" width="500" height="500" onclick="loadBox()">
 </canvas>
 <br>
 <select name="cname" id="cname"></select>
+<button onclick="changeClass()">Change Class</button>
 <script src="scripts.js"></script>
+<script>
+  $(document).ready(function() {
+  init();
+  });
+</script>
 </body>
 </html>
