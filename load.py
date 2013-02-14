@@ -19,7 +19,13 @@ def loadData( sl ):
 form = cgi.FieldStorage()
 t = form["type"].value
 print "\n\n"
-if t == "students":
+if t == "classes":
     print loadData( "classlist.txt" )
-elif t == "classes":
-    print loadData( "classnames" )
+elif t == "students":
+    if form.has_key("section"):
+        print loadData( form["section"].value + ".txt" )
+    else:
+        f = open("classlist.txt")
+        c = f.readline().strip()
+        f.close()
+        print loadData( c + ".txt" )
