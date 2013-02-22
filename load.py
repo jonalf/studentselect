@@ -4,28 +4,26 @@ import cgi
 
 studentList = "classlist.txt"
 
-def getData( sl ):
-    names = []
-    f = open(sl, "r")
-    for n in f.readlines():
-        names.append( n.strip() )
+def getDataCSV():
+    classDict = {}
+    f = open( studentList, "r" )
+    for line in f.readlines():
+        clas = line.split(",")
+        classDict[ clas[0] ] = clas[1:]
     f.close()
-    return names
-
-def loadData( sl ):
-    return json.dumps(getData( sl ))
-
+    return classDict
 
 form = cgi.FieldStorage()
 t = form["type"].value
+classDict = getDataCSV()
+
 print "\n\n"
 if t == "classes":
-    print loadData( "classlist.txt" )
+    print json.dumps( classDict.keys() )
+
 elif t == "students":
     if form.has_key("section"):
-        print loadData( form["section"].value + ".txt" )
+        print json.dumps( classDict[form["section"].value])
     else:
-        f = open("classlist.txt")
-        c = f.readline().strip()
-        f.close()
-        print loadData( c + ".txt" )
+        print json.dumps( classDict[ classDict.keys()[0]] )
+
