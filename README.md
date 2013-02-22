@@ -2,7 +2,7 @@ Magical Student Selector!
 =============
 To install:
    The following files need to be placed on a web server in the same directory
-      load.py, scripts.js, jquery-1.8.3.min.js, studentselect.html and classlist.txt
+      load.py, scripts.js, jquery-1.8.3.min.js, studentselect.html, style.css and classlist.txt
       
 To use:
    The only file that should be changed is classlist.txt.
